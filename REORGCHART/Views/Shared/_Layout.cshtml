@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - OrgChart Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" style="width:100%!important;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Orgchart", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <span class="navbar-brand" style="font-size:12px;padding:15px 0px;margin-left:0px;">(</span>
+                <span id="spnOrgType" class="navbar-brand" style="font-size:12px;padding:15px 0px;margin-left:0px;">Operational View</span>
+                <span class="navbar-brand" style="font-size:12px;padding:15px 0px;margin-left:0px;">&nbsp;:&nbsp;</span>
+                <span id="spnOrgLevel" class="navbar-brand" style="font-size:12px;padding:15px 0px;margin-left:0px;">Level One</span>
+                <span class="navbar-brand" style="font-size:12px;padding:15px 0px;margin-left:0px;">)</span>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav  navbar-right">
+                    <li>
+                        <div class="dropdown" style="margin:10px;">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span id="spnOrgRole">User</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li id="liUser">@Html.ActionLink("User", "UserChartRole", "Home", new { onclick = "return CreateOrgChart('Role', 'User');" })</li>
+                                <li id="liPlayer">@Html.ActionLink("Player", "PlayerChartRole", "Home", new { onclick = "return CreateOrgChart('Role', 'Player');" })</li>
+                                <li id="liFinalyzer">@Html.ActionLink("Finalyzer", "FinalyzerChartRole", "Home", new { onclick = "return CreateOrgChart('Role', 'Finalyzer');" })</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown" style="margin:10px;">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span id="spnOrgView">Normal View</span>
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Normal View", "Index", "Home", new { onclick = "return CreateOrgChart('View', 'Normal');" })</li>
+                                <li>@Html.ActionLink("Position Cost View", "Index", "Home", new { onclick = "return CreateOrgChart('View', 'Cost')" })</li>
+                                <li>@Html.ActionLink("Sample View", "Index", "Home", new { onclick = "return CreateOrgChart('View', 'Sample')" })</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown" style="margin:10px;">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                @User.Identity.Name
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Operational View", "Index", "Home", new { onclick = "return CreateOrgChart('Type', 'OV');" })</li>
+                                <li>@Html.ActionLink("Legal View", "Index", "Home", new { onclick = "return CreateOrgChart('Type', 'LV');" })</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Level One", "Index", "Home", new { onclick = "return CreateOrgChart('Level', 'One');" })</li>
+                                <li>@Html.ActionLink("Level Two", "Index", "Home", new { onclick = "return CreateOrgChart('Level', 'Two')" })</li>
+                                <li class="divider"></li>
+                                <li id="liSaveVersion">@Html.ActionLink("Save Version", "SaveVersion", "Version")</li>
+                                <li id="liUploadVersion">@Html.ActionLink("Upload Version", "UploadVersion", "Version")</li>
+                                <li id="liDownloadVersion">@Html.ActionLink("Download Version", "DownloadVersion", "Version")</li>
+                                <li id="liLoadVersion">@Html.ActionLink("Load Version", "LoadVersion", "Version")</li>
+                                <li id="liFinalizeVersion">@Html.ActionLink("Finalize Version", "FinalizeVersion")</li>
+                                <li id="liUpdateTable">@Html.ActionLink("Update Data", "UpdateData", "Version")</li>
+                                <li id="liDivider1" class="divider"></li>
+                                <li>@Html.ActionLink("Settings", "Settings", "Settings")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("All PDF", "AllPDF", "Export")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Log Out", "LogOut", "Home")</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" style="width:100%!important;">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - McBitss</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    
+</body>
+</html>

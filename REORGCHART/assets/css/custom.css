@@ -1,0 +1,551 @@
+﻿/* Overiding Kendo menu */
+
+.k-icon,.k-tool-icon,.k-grouping-dropclue,.k-drop-hint,.k-column-menu .k-sprite
+{
+    background-image:url('../images/sprite.png') !important;
+    border-color:transparent !important;
+    width:24px !important;
+    height:24px !important; 
+
+}
+    .k-icon .k-i-arrow-s {
+        background-image:none ;
+    border-color:transparent !important;
+    width:24px !important;
+    height:24px !important; 
+    }
+/*
+.k-in {
+    background-image:url('../images/sprite.png') !important;e
+    border-color:transparent !important;
+    width:24px !important;
+    height:24px !important; 
+    background-position:-130px -30px !important;
+}
+*/
+.k-i-expand,.k-plus,.k-plus-disabled
+{
+    background-position:-125px 0 !important;
+
+}
+
+.k-treeview-lines .k-minus
+{
+        background-position:-95px 0 !important;
+
+}
+.k-treeview-lines .k-minus-disabled
+{
+        background-position:-95px 0 !important;
+
+}
+.k-treeview-lines .k-i-collapse
+{
+        background-position:-95px 0 !important;
+
+}
+
+.k-i-collapse,.k-minus,.k-minus-disabled
+{
+    background-position:-22px -86px !important;
+
+}
+
+
+ .righttreemenu1
+        {
+            padding-left: 10px;
+            color: #fff !important;
+        }
+
+            .righttreemenu1 span
+            {
+                font-size: 12px;
+                color: #807676 !important;
+            }
+
+        span.k-in > span.highlight
+        {
+            background: #d7a260;
+            color: #ffffff;
+            
+            padding: 1px;
+        }
+
+                a.k-in > span.highlight
+        {
+            background: #d7a260;
+            color: #ffffff;
+            
+            padding: 1px;
+        }
+
+
+div.k-treeview {
+    overflow:visible !important;
+}
+/* Overriding style.css*/
+
+.page-section {
+    padding: 0 0 0 0px;
+    background:#fff;
+}
+
+.vertical-menu {
+    background-color:#edecec  !important;
+    left:0 !important;
+}
+
+    .vertical-menu.close.on-hover-show {
+        left:-330px !important;
+    }
+    .vertical-menu.close {
+        left:-332px !important;
+    }
+
+    .vertical-menu form .container-inline {
+        margin-left:10px!important;
+    }
+.row.metro-panel {
+    margin-top:0 !important;
+    margin-bottom:0 !important;
+}
+
+.vertical-menu form button.form-submit, .sidebar-right .searchform .form-submit, .not-found .searchform .form-submit {
+background-color:#f6a5a5 !important;
+right:45px !important;
+
+}
+.vertical-menu form button.form-close,  .not-found .searchform .form-close {
+            height: 33px;
+            position: absolute;
+            right: 2px;
+            width: 36px;
+            background: url("../images/close.gif") no-repeat scroll 4px 5px #F6A5A5;
+            text-indent: -9999%;
+            border: 0px none;
+            box-shadow: 0px 0px 0px;
+            padding: 1.8em  1.5em 0.75em;
+        }
+.go-back .back {
+margin-left:5px !important;
+color:#ff6a00 !important;
+}
+
+.copyright {
+    color: #807676 !important;
+}
+
+/* Overriding colors.css*/
+#spaces-main .site-name a, #spaces-main .showMenu, #spaces-main .showMenu a, #spaces-main .fullscreen, #spaces-main .fullscreen a {
+    color:#ff6a00 !important;
+}
+
+
+.fullscreen {
+   width:30px;
+   height:30px;
+}
+
+
+
+/* Overriding foundation.css*/
+.row {
+    margin:inherit !important;
+    max-width:100% !important;
+}
+
+
+h1, h2, h3, h4, h5 {
+    color: #ff6a00;
+    margin-bottom:inherit !important;
+    font-size:1em;
+    margin-top:0px;
+    font-weight:bold;
+}
+/* Custom CSS  #969696*/
+.box-title {
+    font-size:.8em;
+    text-align:center !important;
+    vertical-align:bottom !important;
+    width:90%;
+    font-weight:bold;
+    line-height: 1.1em;
+    color:#edecec;
+    
+}
+
+.rpgConfigurationPanel {
+    padding: 0 0 0 0 !important;
+}
+.rpgLeftConfigurationPanel .rpgConfigurationPanel {
+    width:400px !important;
+}
+
+ul,
+ol,
+dl {
+  font-size: .8rem;
+}
+#searchable-tree {
+     overflow: visible;
+}
+
+html, body {
+    line-height: 1.2em !important;
+}
+
+.showMenu2 {
+    background-color:white;
+    color:#ff6a00;
+}
+
+
+/* Pop box*/
+
+ .popBox-medium .saveButton {
+        right:300px;  
+        bottom:0px; 
+        position:absolute; 
+        height:33px;
+        vertical-align:middle;
+        text-align:justify;
+   }
+  .popBox-medium .closeButton {
+           right:200px;  
+   bottom:0px; 
+    position:absolute; 
+    height:33px;
+    vertical-align:middle;
+   }
+  .popBox-medium { 
+    display:none; /* Hide the DIV */
+    position:fixed;  
+    _position:absolute; /* hack for internet explorer 6 */  
+    height:600px;  
+    width:600px;  
+    background:#FFFFFF;  
+    left: 400px;
+    top: 150px;
+    z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+    margin-left: 15px;  
+    color:black;
+
+    /* additional features, can be omitted */
+    border:1px solid #ff0000;      
+    padding:15px;  
+    font-size:12px;  
+    -moz-box-shadow: 0 0 5px #ff0000;
+    -webkit-box-shadow: 0 0 5px #ff0000;
+    box-shadow: 0 0 5px #ff0000;
+    
+}
+
+      
+     .popBox-small .saveButton{
+           right:220px;  
+    bottom:0px;  
+    position:absolute; 
+        height:33px;
+        vertical-align:middle;
+        text-align:justify;
+      }
+       .popBox-small .closeButton {
+           right:120px;  
+     bottom:0px;   
+    position:absolute; 
+    height:33px;
+    vertical-align:middle;
+      }
+      .popBox-small { 
+    display:none; /* Hide the DIV */
+    position:fixed;  
+    _position:absolute; /* hack for internet explorer 6 */  
+    height:350px;  
+    width:400px;  
+    background:#FFFFFF;  
+    left: 600px;
+    top: 150px;
+    z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+    margin-left: 15px;  
+    color:black;
+
+    /* additional features, can be omitted */
+    border:1px solid #ff0000;      
+    padding:15px;  
+    font-size:12px;  
+    -moz-box-shadow: 0 0 5px #ff0000;
+    -webkit-box-shadow: 0 0 5px #ff0000;
+    box-shadow: 0 0 5px #ff0000;
+    
+}
+
+.popBox-Large .saveButton{
+    right:370px;  
+    bottom:0px;  
+    position:absolute; 
+    height:33px;
+    vertical-align:middle;
+    text-align:justify;
+}
+.popBox-Large .closeButton {
+    right:270px;  
+    bottom:0px; 
+    position:absolute; 
+    height:33px;
+    vertical-align:middle;
+ }
+.popBox-Large{ 
+    display:none; /* Hide the DIV */
+    position:fixed;  
+    _position:absolute; /* hack for internet explorer 6 */  
+    height:650px;  
+    width:700px;  
+    background:#FFFFFF;  
+    left: 500px;
+    top: 100px;
+    z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+    margin-left: 15px;  
+    color:black;
+
+    /* additional features, can be omitted */
+    border:1px solid #ff0000;      
+    padding:15px;  
+    font-size:12px;  
+    -moz-box-shadow: 0 0 5px #ff0000;
+    -webkit-box-shadow: 0 0 5px #ff0000;
+    box-shadow: 0 0 5px #ff0000;
+    
+}
+.pocBox-close
+{
+    right:20px;  
+    top:20px;  
+    font-size:20px; 
+    position:absolute; 
+}
+
+.k-loading-image {
+    z-index : 900 ;
+}
+
+#orgization-selecter, .organization
+{
+    float:right;
+    vertical-align:middle;
+    position:relative;
+
+
+}
+/*
+.columns
+{
+    min-width:200px !important;
+
+}
+  
+.small-6
+{
+    min-width:220px !important;
+}
+*/
+
+
+ #fieldlist {
+            margin: 0 0 -2em;
+            padding: 0;
+            text-align: center;
+        }
+
+        #fieldlist > li {
+            list-style: none;
+            padding-bottom: 2em;
+        }
+
+        #fieldlist label {
+            display: block;
+            padding-bottom: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .vertical-menu .remove {
+            padding-top:0px;
+        }
+
+        .breadcrumbs
+        {
+           padding-bottom:0;
+           padding-top:3px;
+
+        }
+        .lelevSelector
+        {
+            vertical-align:top;
+            width:150px !important;
+            margin-left:10px;
+        }
+        div.lelevSelector .k-slider-selection {
+            display: none;
+        }
+
+.k-slider .k-button {
+}
+
+.k-i-arrow-w {
+    background-image: url('Default/sprite.png');
+    background-position: 0 -48px;
+}
+.k-i-arrow-e {
+    background-image: url('Default/sprite.png');
+    background-position: 0 -16px;
+}
+.k-label {
+    display:none;
+}
+.breadcrumbs {
+/*background-color:#ddd;
+#border-color:#999;
+*/
+background-color:#923222;
+border-color:#923222;
+color:white !important;
+z-index:10;
+}
+
+
+.breadcrumbs a {
+color:white !important;
+
+}
+.contextMenuIcon {
+    position:absolute; 
+    right:0;
+    top:0;
+    width:35px;
+    height:33px;
+    background-image:url('../../images/plus.jpg');
+    background-position:0 0 !important;
+}
+
+.workspace  {
+    padding-top:2px; 
+    height: 100%; 
+    width:100%; 
+    float:left;
+}
+.pallete {
+    padding-top:2px; 
+    height: 100%; 
+    width:100%; 
+    float:right;
+}
+.select-div {
+    display:inline;
+    
+    min-width:140px !important;
+}
+
+.hmenulabel {
+    font-size:1.1em;
+    color:white !important;
+    margin-left:0px;
+    text-decoration:none !important;
+    display:inline;
+}
+.lookuplabel {
+    font-size:1.1em;
+    font-weight:bold;
+    color:white !important;
+    margin-left:4px;
+    text-decoration:none !important;
+    display:none;
+}
+a .lookuplabel {
+    text-decoration:none !important;
+}
+select {
+  
+  height:100%;
+  border: 0px solid #ccc;
+  font-size:1em;
+  font-weight:normal;
+  color:white;
+  background: url('../../images/arrow.png') no-repeat right;
+  
+  -webkit-appearance: none;
+  -moz-appearance: none;
+   -moz-appearance: none;
+ }
+option {
+    color:black;
+}
+select::-ms-expand { /* for IE 11 */
+  display: none;
+}
+/*
+.select-div.INITIATIVE{
+ min-width:120px !important;
+ }
+.select-div.POPULATION {
+ min-width:135px !important;
+ }
+.select-div.USER{
+ min-width:100px !important;
+ }
+.select-div.VERSION {
+ min-width:120px !important;
+  }
+ */                            
+.showPreview
+ {
+  visibility:visible;
+ }
+
+.hidePreview
+ {
+  visibility:hidden;
+}
+
+.row .row {
+    width:100% !important;
+}
+
+.menu-button {
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+    .breadcrumbs.close {
+        display:none;
+    }
+
+
+
+
+    /* Overriding select 2*/
+    /* select2.min.css (1, 158) */
+.select2-container .select2-selection--single {
+    height: 22px !important;
+}
+
+/* select2.min.css (1, 2936) */
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 20px !important;
+}
+
+/* select2.min.css (1, 3268) */
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 20px !important;
+}
+
+
+/* For button group*/
+ul, ol, dl {
+    line-height:1em !important;
+}
+.km-buttongroup.km-widget {
+    display:inline !important;
+}

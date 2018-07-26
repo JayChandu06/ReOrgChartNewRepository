@@ -1,0 +1,378 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .center {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 350px;
+        max-height: 450px;
+        background-color: #ffffff;
+        border-radius: 3px;
+        border: 3px solid lightblue;
+    }
+
+    .navIndexGreen {
+        border: 5px solid #337ab7;
+        width: 25px;
+        height: 25px;
+        background-color: Green;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+        font-family: Arial;
+        color: white;
+    }
+
+    .navIndexWhite {
+        border: 5px solid #caddef;
+        width: 25px;
+        height: 25px;
+        background-color: White;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+        font-family: Arial;
+        color: black;
+    }
+
+    input, button, select, textarea {
+        max-width:100%!important;
+        margin-top:5px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-4 center">
+        <center>
+            <div style="padding-left:0px;padding-top:10px">
+                <table cellspacing="0" cellpadding="0" id="topNavigation">
+                    <tr>
+                        <td id="topNavAdjust" style="height: 42px">
+                            &nbsp;
+                        </td>
+                        <td>
+                            <div>
+                                <img id="img_1" src="~/Content/Images/number1.svg" style="width:40px;height:40px;" />
+                            </div>
+                        </td>
+                        <td>
+                            <div id="dvNav_B_2" style="width: 100px; height: 3px; margin-top: -1px; margin-left: -4px;"
+                                 class="navIndexWhite">
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img id="img_2" src="~/Content/Images/number2.svg" style="width:40px;height:40px;" />
+                            </div>
+                        </td>
+                        <td>
+                            <div id="dvNav_B_3" style="width: 100px; height: 3px; margin-top: -1px; margin-left: -4px;"
+                                 class="navIndexWhite">
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img id="img_3" src="~/Content/Images/number3.svg" style="width:40px;height:40px;" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="div1" style="height:350px;padding-top:10px;">
+                <input type="hidden" value="" id="hdnFields" name="hdnFields"/>
+                <div style="height:50px">
+                    <input style="padding-left:5px" id="rdoJSON" name="FileType" type="radio" value="" />
+                    <label style="padding-left:5px">Json</label>
+                    <input style="padding-left:5px" id="rdoXLSX" name="FileType" type="radio" value="Excel" />
+                    <label style="padding-left:5px">Excel</label>
+                    <div id="divErrorOption" style="color:red;display:none;">Please select the Options provided.</div>
+                </div>
+                <div style="width:100%">
+                    <form id="data" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="hdnFileName" name="hdnFileName" value="" />
+                        <input type="file" class="form-control" id="upload" name="upload" onchange="SetDivIds();" style="height: auto;max-width:350px!important;margin-bottom:5px;">
+                    </form>
+                    <div id="divErrorUploadFile" style="color:red;display:none;">Please select xlsx or json file with respect to option selected.</div>
+                    <div id="divErrorMissingFields" style="color:red;display:none;max-height:220px;overflow-y:auto;"></div>
+                </div>
+            </div>
+            <div id="div2" style="display:none;height:350px;padding-top:10px;">
+                <div style="width:100%;text-align:left;font-weight:bold;margin-top:5px;color:blue;">Following Fields will be used to design the Boxes</div>
+                <div id="divShowFields" style="max-height:260px;overflow-y:auto;margin-bottom:5px;"></div>
+            </div>
+            <div id="div3" style="display:none;height:340px;padding-top:10px;" class="form-group">
+                <div style="width:100%;text-align:left;font-weight:bold;margin-top:5px;margin-bottom:10px;color:blue;">
+                    First Position information
+                    ( <input type="checkbox" value="" id="chkSerialNo" /><label for="chkSerialNo">Serial No. Flag</label> )
+                </div>
+                <select id="selFP" name="selFP" class="form-control"></select>
+                <input id="txtFirstPosition" name="txtFirstPosition" type="text" value="" placeholder="First Position" class="form-control" />
+                <div id="divErrorFirstPositionEmpty" style="color:red;text-align:left;display:none;">First Position field is empty</div>
+                <div id="divErrorFirstPosition" style="color:red;text-align:left;display:none;">First Position field did not exists</div>
+                <div style="width:100%;text-align:left;font-weight:bold;margin-top:7px;margin-bottom:10px;color:blue;">Parent Child Relationship</div>
+                <select id="selNL" name="selNL" class="form-control"></select>
+                <select id="selPL" name="selPL" class="form-control"></select>
+                <div style="width:100%;text-align:left;font-weight:bold;margin-top:7px;margin-bottom:10px;color:blue;">Full Name information with comma separated</div>
+                <input id="txtFullName" name="txtFullName" type="text" value="" placeholder="Full Name fields with comma" class="form-control" />
+                <div id="divErrorFullNameEmpty" style="color:red;text-align:left;display:none;">Full Name field is empty</div>
+                <div id="divErrorFullName" style="color:red;text-align:left;display:none;">Some of the fields did not exists</div>
+            </div>
+            <div class="footer" style="padding-bottom:30px;padding-left:10px">
+                <button id="btnBack" class="btn btn-primary" disabled style="width:70px;" onclick="BackQ()">Back</button>
+                <button id="btnNext" class="btn btn-primary" style="width:70px" onclick="NextQ()">Next</button>
+                <button id="btnFinish" class="btn btn-primary" disabled style="width:70px" onclick="Finish()">Finish</button>
+                <button class="btn btn-primary" style="width:70px">Cancel</button>
+            </div>
+        </center>
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var Data = 0;
+
+    $(document).ready(function () {
+        $("#img_1").attr("src", "/Content/Images/SelectedOne.svg");
+
+        $("form#data").submit(function (e) {
+            if ($("#hdnFileName").val() == "") {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: "/Version/UploadFile",
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    success: function (data) {
+                        if (data.Success == "Yes") {
+                            Data++;
+
+                            $("#hdnFields").val(data.SF);
+                            $("#hdnFileName").val(data.FN);
+                            var ShowFields = data.SF.split(",");
+                            var SF = "", FL = "<option value=\"FULL_NAME\">FULL_NAME</option>";
+                            for (Idx = 0; Idx < ShowFields.length; Idx++) {
+                                SF += "<div style=\"width:100%;text-align:left;color:black;\">" +
+                                    "    <input id='" + Idx + "' name='ShowFields' type='checkbox' checked='checked' disabled='disabled'/>" +
+                                    "    <label style='padding-left: 5px' for='" + Idx + "'>" + ShowFields[Idx] + "</label>" +
+                                    "</div>";
+                                FL += "<option value=\"" + ShowFields[Idx] + "\">" + ShowFields[Idx] + "</option>"
+                            }
+                            $("#divShowFields").html(SF);
+                            $("#selFP").html(FL);
+                            $("#selNL").html(FL);
+                            $("#selPL").html(FL);
+                        }
+                        else {
+                            if (data.Message == "Missing Fields") {
+                                var MissingFields = data.MF.split(",");
+                                if (MissingFields.length >= 1) {
+                                    $("#divErrorMissingFields").show();
+                                    $("#divErrorMissingFields").empty();
+
+                                    var SerialNo = 0;
+                                    var MF = "<div style=\"width:100%;text-align:left;font-weight:bold;\">Following Fields either having null values or missing</div>";
+                                    for (Idx = 0; Idx < MissingFields.length; Idx++) {
+                                        var WordSplit = MissingFields[Idx].split("~:~");
+                                        if (WordSplit[0] != SerialNo) {
+                                            SerialNo = WordSplit[0];
+                                            MF += "<div style=\"width:100%;text-align:left;margin-top:3px;margin-bottom:2px;\">Line number: " + WordSplit[0].trim() + "</div>";
+                                        }
+                                        MF += "<div style=\"width:100%;text-align:left;color:black;\">" + WordSplit[1] + "</div>";
+                                    }
+                                    $("#divErrorMissingFields").html(MF);
+                                }
+                            }
+                        }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
+            else Data++;
+        });
+    });
+
+    function SetDivIds() {
+        $("#divErrorOption").hide();
+        $("#divErrorUploadFile").hide();
+        $("#divErrorMissingFields").hide();
+        $("#hdnFileName").val("");
+    }
+
+    function ErrorString() {
+        var sError = "N";
+
+        $("#divErrorOption").hide();
+        $("#divErrorUploadFile").hide();
+        $("#divErrorMissingFields").hide();
+        $("#divErrorFirstPosition").hide();
+        $("#divErrorFullName").hide();
+        $("#divErrorFirstPositionEmpty").hide();
+        $("#divErrorFullNameEmpty").hide();
+        if (Data == 0) {
+            if (!($("#rdoJSON").prop("checked") || $("#rdoXLSX").prop("checked"))) {
+                $("#divErrorOption").show();
+                sError = "Y";
+            }
+            if ($("#rdoJSON").prop("checked")) {
+                var ext = $('#upload').val().split('.').pop().toLowerCase();
+                if ($.inArray(ext, ['json']) == -1) {
+                    $("#divErrorUploadFile").show();
+                    sError = "Y";
+                }
+            }
+            if ($("#rdoXLSX").prop("checked")) {
+                var ext = $('#upload').val().split('.').pop().toLowerCase();
+                if ($.inArray(ext, ['xlsx']) == -1) {
+                    $("#divErrorUploadFile").show();
+                    sError = "Y";
+                }
+            }
+        }
+        else if (Data == 2) {
+            if ($("#txtFirstPosition").val().trim() == "") {
+                $("#divErrorFirstPositionEmpty").show();
+                sError = "Y";
+            }
+
+            if ($("#txtFirstPosition").val().trim() != "") {
+                var FirstPosition = $("#txtFirstPosition").val().split(",");
+                var FieldsList = $("#hdnFields").val().split(",");
+                for (var Idx = 0; Idx < FirstPosition.length; Idx++) {
+                    if (FieldsList.indexOf(FirstPosition[Idx]) == -1) {
+                        $("#divErrorFirstPosition").show();
+                        sError = "Y";
+                    }
+                }
+            }
+
+            if ($("#txtFullName").val().trim() == "") {
+                $("#divErrorFullNameEmpty").show();
+                sError = "Y";
+            }
+
+            if ($("#txtFullName").val().trim() != "") {
+                var FullName = $("#txtFullName").val().split(",");
+                var FieldsList = $("#hdnFields").val().split(",");
+                for (var Idx = 0; Idx < FullName.length; Idx++) {
+                    if (FieldsList.indexOf(FullName[Idx]) == -1) {
+                        $("#divErrorFullName").show();
+                        sError = "Y";
+                    }
+                }
+            }
+        }
+
+        return sError;
+    }
+
+    function Finish() {
+        $("#img_3").attr("src", "/Content/Images/SelectedThree.svg");
+
+        if (ErrorString() == "N") {
+            var JsonData = {
+                selFP: $("#selFP").val(),
+                txtFP: $("#txtFirstPosition").val(),
+                chkSN: ($("#chkSerialNo").prop("checked") == true) ? "Y" : "N",
+                selNL: $("#selNL").val(),
+                selPL: $("#selPL").val(),
+                txtUN: $("#txtFullName").val(),
+                chkFT: $("#rdoXLSX").prop("checked")?"XLSX":"JSON",
+                txtFN: $("#hdnFileName").val()
+            };
+
+            $.ajax({
+                url: "/Version/SaveVersionInfo",
+                type: 'POST',
+                data: JsonData,
+                async: false,
+                success: function (data) {
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        }
+    }
+
+    function NextQ() {
+        if (ErrorString() == "N") {
+            if (Data == 0) $("#data").submit(); else Data++;
+
+            $("#img_1").attr("src", "/Content/Images/number1.svg");
+            $("#img_2").attr("src", "/Content/Images/number2.svg");
+            $("#img_3").attr("src", "/Content/Images/number3.svg");
+
+            if (Data == 1) {
+                $("#dvNav_2").removeClass('navIndexWhite');
+                $("#dvNav_2").addClass('navIndexGreen');
+                $("#dvNav_B_2").removeClass('navIndexWhite');
+                $("#dvNav_B_2").addClass('navIndexGreen');
+                $("#div1").hide();
+                $("#div2").show();
+                $("#div3").hide();
+                $('#btnBack').prop('disabled', false);
+                $("#img_2").attr("src", "/Content/Images/SelectedTwo.svg");
+            }
+            else if (Data == 2) {
+                $("#dvNav_3").removeClass('navIndexWhite');
+                $("#dvNav_3").addClass('navIndexGreen');
+                $("#dvNav_B_3").removeClass('navIndexWhite');
+                $("#dvNav_B_3").addClass('navIndexGreen');
+                $("#div1").hide();
+                $("#div2").hide();
+                $("#div3").show();
+                $('#btnNext').prop('disabled', true);
+                $('#btnFinish').prop('disabled', false);
+                $("#img_3").attr("src", "/Content/Images/SelectedThree.svg");
+            }
+            else $("#img_1").attr("src", "/Content/Images/SelectedOne.svg");
+        }
+    }
+
+    function BackQ() {
+        if (ErrorString() == "N") {
+            Data--;
+
+            $("#img_1").attr("src", "/Content/Images/number1.svg");
+            $("#img_2").attr("src", "/Content/Images/number2.svg");
+            $("#img_3").attr("src", "/Content/Images/number3.svg");
+
+            if (Data == 0) {
+                $('#btnBack').prop('disabled', true);
+                $('#btnFinish').prop('disabled', true);
+                $("#dvNav_2").removeClass('navIndexWhite');
+                $("#dvNav_2").addClass('navIndexGreen');
+                $("#dvNav_B_2").removeClass('navIndexWhite');
+                $("#dvNav_B_2").addClass('navIndexGreen');
+                $("#div1").show();
+                $("#div2").hide();
+                $("#div3").hide();
+                $("#img_1").attr("src", "/Content/Images/SelectedOne.svg");
+            }
+            else if (Data == 1) {
+                $('#btnNext').prop('disabled', false);
+                $('#btnFinish').prop('disabled', true);
+                $("#dvNav_3").removeClass('navIndexWhite');
+                $("#dvNav_3").addClass('navIndexGreen');
+                $("#dvNav_B_3").removeClass('navIndexWhite');
+                $("#dvNav_B_3").addClass('navIndexGreen');
+                $("#div1").hide();
+                $("#div2").show();
+                $("#div3").hide();
+                $("#img_2").attr("src", "/Content/Images/SelectedTwo.svg");
+            }
+        }
+    }
+</script>
+
+

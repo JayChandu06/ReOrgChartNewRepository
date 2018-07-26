@@ -1,0 +1,55 @@
+﻿@{ Layout = "~/Views/Shared/_LoginLayout.cshtml"; }
+@model REORGCHART.Models.LoginModel
+<style>
+    .center {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 300px;
+        max-height: 420px;
+        background-color: #ffffff;
+        border-radius: 3px;
+        border: 3px solid lightblue;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-3 center">
+            <h3 style="font-family:Roboto;text-align:center">Log In</h3>
+            <p style="color:red">@ViewBag.ErrorMessage</p>
+            <div class="form-group">
+                <input class="form-control" id="UserName" name="UserName" placeholder="User Name" type="text" value="" />
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="Password" name="Password" placeholder="Password" type="password" value="" />
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input id="RememberMe" type="checkbox" name="RememberMe" value="on" style="margin-top:3px;">
+                <label style="font: 14px 'Segoe UI', Helvetica, 'Droid Sans', Tahoma, Geneva, sans-serif;color: #666;">&nbsp;Remember me?</label>
+            </div>
+            <div class="form-group">
+                <input id="cbxDataPrivacy" type="checkbox" name="cbxDataPrivacy" value="on">
+                <label style="font: 14px 'Segoe UI', Helvetica, 'Droid Sans', Tahoma, Geneva, sans-serif;color: #666;">&nbsp;I agree to the <a href="/DataPrivacyPolicy/DataPrivacy" onclick="Datapolicy()" target="_blank" style="text-decoration: underline;"> Data Privacy Policy</a></label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="form-control form-submit btn btn-info">Log In</button>
+            </div>
+            <div style="width:100%!important;text-align:center;margin-bottom:2px;">
+                Don't have an account? @Html.ActionLink("Sign Up", "Register")
+            </div>
+            <div style="width:100%!important;text-align:center;margin-bottom:20px;">
+                Forgot password? @Html.ActionLink("Forgot Password", "ForgotPassword")
+            </div>
+        </div>
+   </div>
+}
+
+
+

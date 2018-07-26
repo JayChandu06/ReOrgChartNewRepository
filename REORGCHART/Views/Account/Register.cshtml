@@ -1,0 +1,69 @@
+﻿
+@{ Layout = "~/Views/Shared/_LoginLayout.cshtml"; }
+@model REORGCHART.Models.RegisterModel
+
+<style>
+    .center {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 300px;
+        max-height: 580px;
+        background-color: #ffffff;
+        border-radius: 3px;
+        border: 3px solid lightblue;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-3 center">
+            <h3 class="m-b-20 text-center" style="font-family:Roboto">Create a New Account</h3>
+            <p style="color:red">@ViewBag.ErrorMessage</p>
+            <div class="form-group m-b-20">
+                <input class="form-control" id="UserName" name="UserName" placeholder="User Name" type="text" value="" />
+                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group m-b-20">
+                <input class="form-control" id="CompanyName" name="CompanyName" placeholder="Company Name" type="text" value="" />
+                @Html.ValidationMessageFor(m => m.CompanyName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group m-b-20">
+                <input class="form-control" id="Email" name="Email" placeholder="Email" type="text" value="" />
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group m-b-20">
+                <input class="form-control" id="Password" name="Password" placeholder="Password" type="password" value="" />
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group m-b-20">
+                <input class="form-control" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" type="password" value="" />
+                @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group m-b-20">
+                <input id="cbxDataPrivacy" type="checkbox" name="cbxDataPrivacy" value="on">
+                <label style="font: 14px 'Segoe UI', Helvetica, 'Droid Sans', Tahoma, Geneva, sans-serif;color: #666;">&nbsp;I agree to the <a href="/DataPrivacyPolicy/DataPrivacy" onclick="Datapolicy()" target="_blank" style="text-decoration: underline;"> Data Privacy Policy</a></label>
+            </div>
+            <div class="form-group m-b-20">
+                <div>
+                    <button type="submit" class="form-control form-submit btn btn-info">Register</button>
+                </div>
+            </div>
+
+            <div class="form-group m-b-0">
+                <div class="col-sm-12 text-center">
+                    <div>
+                        Do you already have an account? @Html.ActionLink("Sign In", "Login", "Account")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ }
+
+
